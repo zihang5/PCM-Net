@@ -1,5 +1,4 @@
 import glob
-# from torch.utils.tensorboard import SummaryWriter
 import os, losses, utils
 import sys
 from torch.utils.data import DataLoader
@@ -11,22 +10,8 @@ from torch import optim
 import torch.nn as nn
 import matplotlib.pyplot as plt
 from natsort import natsorted
-from models import ModeT
 import random
-def same_seeds(seed):
-    # Python built-in random module
-    random.seed(seed)
-    # Numpy
-    np.random.seed(seed)
-    # Torch
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed(seed)
-        torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.benchmark = True
-    # torch.backends.cudnn.deterministic = True
-
-same_seeds(24)
+import PCM
 class Logger(object):
     def __init__(self, save_dir):
         self.terminal = sys.stdout
@@ -46,9 +31,8 @@ def main():
     val_dir = '/LPBA_path/Val/'
     weights = [1, 1]  # loss weights
     lr = 0.0001
-    head_dim = 6
-    num_heads = [8,4,2,1,1]
-    save_dir = 'modet-heads({}{}{}{}{})-rpe_headim_{}_ncc_{}_reg_{}_lr_{}_54r/'.format(*num_heads, head_dim, weights[0], weights[1], lr)
+
+    save_dir = 'PCM'
     if not os.path.exists('experiments/' + save_dir):
         os.makedirs('experiments/' + save_dir)
     if not os.path.exists('logs/' + save_dir):
@@ -64,7 +48,7 @@ def main():
     '''
     Initialize model
     '''
-    model = ModeT(img_size, head_dim=head_dim, num_heads=num_heads, scale=1)
+    model = PCM.PCM(1,4)
     model.cuda()
 
     '''
