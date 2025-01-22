@@ -1,9 +1,9 @@
 # PCM-Net
-if you want to train this model, please: 
+if you want to train this model: 
 ```python
 python train.py 
 ```
-if you want to test, please: 
+if you want to test: 
 ```python
 python infer.py
 ```
