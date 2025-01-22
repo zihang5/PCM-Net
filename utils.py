@@ -120,7 +120,7 @@ def dice_val_VOI(y_pred, y_true):
         dsc = (2.*intersection) / (union + 1e-5)
         DSCs[idx] =dsc
         idx += 1
-    return DSCs,np.mean(DSCs)
+    return np.mean(DSCs)
 
 def jacobian_determinant_vxm(disp):
     """
