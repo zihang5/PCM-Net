@@ -1,4 +1,4 @@
-# PCM-Net
+#  PCM-Net: A Hierarchical Medical Image Registration Framework Integrating Channel Adaptability and Multi-Scale Awareness
 if you want to train this model: 
 ```python
 python train.py 
